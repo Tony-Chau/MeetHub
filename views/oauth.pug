@@ -1,0 +1,33 @@
+doctype 5
+html(lang="en")
+
+head
+    title= 'Meethub'
+body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a(href='/')
+            input(type='image', src='/assets/logo.png').navbar-brand
+        #myNavbar.collapse.navbar-collapse
+            form(action='/Search', method='GET').navbar-form.navbar-right
+                .form-group
+                    input.form-control(type='text', placeholder='Search', name='qry')
+                button.btn.btn-default(type='submit') Submit
+    .container
+        h1= 'Thank you for your patience. The Event that you have selected has successfully been registered. Please check your calendar. This website will close 10 seconds'
+
+        link(rel='icon', href='../../assets/logo.png')
+        link(rel="stylesheet", href="../../bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="../../bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="../../css/style.css")
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+        script.
+            settimeout(function(){
+                window.close();
+            }, 10000);

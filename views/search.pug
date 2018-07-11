@@ -1,0 +1,40 @@
+doctype 5
+html(lang="en")
+
+
+head
+    title= Title
+body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a(href='/')
+            input(type='image', src='assets/logo.png').navbar-brand
+        #myNavbar.collapse.navbar-collapse
+            form(action='/Search', method='GET').navbar-form.navbar-right
+                .form-group
+                    input.form-control(type='text', placeholder='Search' name='qry')
+                button.btn.btn-default(type='submit') Submit
+    .container
+      h1(style="margin-botton: 10px")= qry
+      each row in rows
+        div(id="eventlisting")
+          a(href='/Event/' + result.group_urlname[row] + '/' + result.id[row], style='text-decoration:none')  
+            h3(id='EventNameSearch', style='text-size:10px;margin-left: 10px;text-align:left;font-weight: bold;')= value=result.name[row]
+            p(style='text-size:30px;margin-left:10px;display:inline;font-weight: bold;')= "Group Name: " 
+              p(style='display:inline;')= result.host[row]
+            p(style='text-size:30px;margin-left: 10px;display:inline;text-align:left;font-weight: bold;')= "Place: " 
+              p(style='display:inline;')= result.city[row]
+            p(style='text-size:30px;margin-left:10px;display:inline;text-align:left;font-weight: bold;')= "Event Time: " 
+              p(style='display:inline;')= result.TimeMessage[row]
+            
+      link(rel='icon', href='assets/logo.png')
+      link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.css")
+      link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+      link(rel="stylesheet", href="css/style.css")
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')

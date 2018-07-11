@@ -1,0 +1,76 @@
+doctype 5
+html(lang="en")
+head
+    title= title
+body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a(href='/')
+            input(type='image', src='/assets/logo.png').navbar-brand
+        #myNavbar.collapse.navbar-collapse
+            form(action='/Search', method='GET').navbar-form.navbar-right
+                .form-group
+                    input.form-control(type='text', placeholder='Search', name='qry')
+                button.btn.btn-default(type='submit') Submit
+    .container
+      //-This is the invisible description and as shown that the style is display none, which prevent it from interferring the interface and
+      //-visibility
+      input(type='text', id='descriptiontext', style="display: none", value= result.description)
+      input(type='number', id='lat', style="display: none", value= result.lat)
+      input(type='number', id='lon', style="display: none", value= result.lon)
+      input(type='text', id='bingAPI', style="display: none", value= BingAPIKey)
+      h1(style='text-align: left; margin-bottom: 20px;')= result.name
+      a(href= result.link, target='_blank', style="text-decoration:none;margin-left:4%;font-size: 20px")= 'Please click here to check this event on meetup.com'
+      //- This is my break line
+      p
+      h4(style="margin-left:4%;display:inline;font-weight: bold;")= "Group Name: "
+        h4(style='display:inline;')= result.host
+      p
+      h4(style="margin-left:4%;display:inline;font-weight: bold;font-size:20px;")= "Event Time: "
+        h4(style='display:inline;')= result.TimeMessage
+      p
+      h4(style="margin-left:4%;display:inline;font-weight: bold;")= "Event Location: "
+        h4(style='display:inline;')= result.city
+      p
+      a(href= url, target='_blank', style="text-decoration:none;margin-left:4%;font-size: 20px")= 'Add to my Google Calendar'
+      p
+      div(style= "margin-left: 8%; margin-top: 30px;", class="form-group", id='description')
+      br
+      h2(style= "margin-left: 8%;margin-bottom:30px;")= 'Event Location'
+      div(style='margin-left: 23%;margin-top: 10px;margin-bottom:30px;width: 700px; height: 500px', id= 'map')
+  
+  
+        link(rel='icon', href='../../assets/logo.png')
+        link(rel="stylesheet", href="../../bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="../../bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet", href="../../css/style.css")
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+        script(type='text/javascript', src='https://www.bing.com/api/maps/mapcontrol?callback=loadMapScenario', async='', defer='')
+        //-This part is where the description part of the meetup api is implemented within the page.
+        //-This works by having an invisible input text value equals to the description information
+        //-Then its appended to the description div
+        script(type='text/javascript').
+          $(document).ready(function(){
+          var description = document.getElementById('descriptiontext').value;
+          $('#description').append(description);
+            });
+        script(type='text/javascript').
+          function loadMapScenario(){
+            var lat = document.getElementById('lat').value;
+            var lon = document.getElementById('lon').value;
+            var apikey = document.getElementById('bingAPI').value;
+            var map = new Microsoft.Maps.Map(document.getElementById('map'), {
+              credentials: apikey,
+              center: new Microsoft.Maps.Location(lat, lon),
+              mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+              zoom: 18
+              });
+            var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), { color: 'red' });
+              map.entities.push(pushpin);
+              }

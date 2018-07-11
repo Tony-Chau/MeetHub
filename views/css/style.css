@@ -1,0 +1,35 @@
+h1 {
+  color: #FF0000;
+  text-align: center;
+}
+body {
+    background: #FFFFFF;
+}
+#CategoryList{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  background-color: #D84F4F;
+  border-color: #D84F4F;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+#CategoryList:hover{
+  color: #000000;
+  background-color: #C64E4E;
+}
+
+#eventlisting{
+  color: #000000;
+  background-color: #FFFFFF;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  padding-right: 80px;
+  border-color: #000000;
+  border-radius: 5px;
+  border-style: solid;
+}
