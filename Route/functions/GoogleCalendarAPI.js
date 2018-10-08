@@ -54,7 +54,6 @@ module.exports = {
           var start = events[i].start.dateTime || events[i].start.date;
           console.log(start + " - " + events[i].summary);
         }
-        
       }
     });
   },

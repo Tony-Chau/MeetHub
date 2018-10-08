@@ -132,7 +132,6 @@ MeetUpRoute.get('/Event/:urlname/:id', function(req, res){
     TimeMessage: TimeMessage,
     city: city
   }
-  console.log(GoogleCalendarAPI.getauthUrl());
   res.render('event', {
     title: 'MeetHub',
     result: send,
